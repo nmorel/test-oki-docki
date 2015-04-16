@@ -19,3 +19,11 @@ RUN \
   apt-get update && \
   apt-get -y install maven && \
   rm -rf /var/lib/apt/lists/*
+
+# Add a user
+RUN adduser --disabled-password --home=/home/user --gecos "" user
+
+# Run all operations in user mode
+USER user
+ENV HOME /home/user
+WORKDIR /home/user
